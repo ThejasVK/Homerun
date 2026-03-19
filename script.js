@@ -202,6 +202,103 @@ function renderProjects() {
   });
 }
 
+function createExperienceItem(job, index) {
+  const item = document.createElement('article');
+  item.className = `experience-item reveal ${index % 2 === 0 ? 'reveal-left' : 'reveal-right'}`;
+  item.style.setProperty('--reveal-delay', `${index * 70}ms`);
+
+  const techHTML = job.tech
+    .map((t) => `<span class="tech-badge">${t}</span>`)
+    .join('');
+
+  const pointsHTML = job.points
+    .map((point) => `<li>${point}</li>`)
+    .join('');
+
+  item.innerHTML = `
+    <h3 class="experience-role">${job.role}</h3>
+    <div class="experience-org-row">
+      <p class="experience-org">${job.organization}</p>
+      <p class="experience-location">${job.location}</p>
+    </div>
+    <div class="experience-meta-row">
+      <p class="experience-dates">${job.dates}</p>
+    </div>
+    <p class="experience-brief">${job.brief}</p>
+    <button class="experience-toggle" type="button" aria-expanded="false">View impact</button>
+    <div class="experience-expanded" hidden>
+      <div class="experience-tech">${techHTML}</div>
+      <ul class="experience-points">${pointsHTML}</ul>
+    </div>
+  `;
+
+  return item;
+}
+
+function createStevensGroupItem(roles, index) {
+  const item = document.createElement('article');
+  item.className = `experience-item experience-item-stevens reveal ${index % 2 === 0 ? 'reveal-left' : 'reveal-right'}`;
+  item.style.setProperty('--reveal-delay', `${index * 70}ms`);
+
+  const roleCount = roles.length;
+  const previewRoles = roles
+    .slice(0, 2)
+    .map((role) => `<span class="stevens-preview-pill">${role.role}</span>`)
+    .join('');
+
+  const allRoleDetails = roles
+    .map((role, roleIndex) => {
+      const techHTML = role.tech
+        .map((t) => `<span class="tech-badge">${t}</span>`)
+        .join('');
+      const pointsHTML = role.points
+        .map((point) => `<li>${point}</li>`)
+        .join('');
+      const shouldStartOpen = roleIndex < 2;
+
+      return `
+        <div class="stevens-role-item">
+          <div class="stevens-role-head">
+            <h4 class="stevens-role-title">${role.role}</h4>
+            <p class="stevens-role-dates">${role.dates}</p>
+          </div>
+          <button class="stevens-role-toggle" type="button" aria-expanded="${shouldStartOpen ? 'true' : 'false'}">${shouldStartOpen ? 'Hide role details' : 'View role details'}</button>
+          <div class="stevens-role-detail" ${shouldStartOpen ? '' : 'hidden'}>
+            <p class="stevens-role-brief">${role.brief}</p>
+            <div class="experience-tech">${techHTML}</div>
+            <ul class="experience-points">${pointsHTML}</ul>
+          </div>
+        </div>
+      `;
+    })
+    .join('');
+
+  item.innerHTML = `
+    <h3 class="experience-role">Stevens Institute of Technology</h3>
+    <div class="experience-org-row">
+      <p class="experience-org">Multiple campus roles</p>
+      <p class="experience-location">Hoboken, NJ</p>
+    </div>
+    <div class="experience-meta-row">
+      <p class="experience-dates">Jan 2025 - Present</p>
+      <span class="stevens-role-count-highlight">${roleCount} Roles at Stevens</span>
+    </div>
+    <p class="experience-brief">Leadership, teaching, and operations work across student wellness and data-driven academic programs.</p>
+    <p class="stevens-role-count-note">Held ${roleCount} distinct roles, each with measurable impact.</p>
+    <div class="stevens-preview-row">
+      ${previewRoles}
+    </div>
+    <button class="experience-toggle" type="button" aria-expanded="false">View all Stevens roles</button>
+    <div class="experience-expanded" hidden>
+      <div class="stevens-role-list">
+        ${allRoleDetails}
+      </div>
+    </div>
+  `;
+
+  return item;
+}
+
 // === EXPERIENCE TIMELINE ===
 function renderExperience() {
   const timeline = document.getElementById('experience-timeline');
@@ -211,44 +308,55 @@ function renderExperience() {
 
   timeline.innerHTML = '';
 
-  experiences.forEach((job, index) => {
-    const item = document.createElement('article');
-    item.className = `experience-item reveal ${index % 2 === 0 ? 'reveal-left' : 'reveal-right'}`;
-    item.style.setProperty('--reveal-delay', `${index * 70}ms`);
+  const stevensRoles = experiences.filter((job) => job.organization === 'Stevens Institute of Technology');
+  const nonStevensRoles = experiences.filter((job) => job.organization !== 'Stevens Institute of Technology');
 
-    const techHTML = job.tech
-      .map((t) => `<span class="tech-badge">${t}</span>`)
-      .join('');
+  const orderedItems = [];
+  if (stevensRoles.length > 0) {
+    orderedItems.push({ type: 'stevens-group', roles: stevensRoles });
+  }
 
-    const pointsHTML = job.points
-      .map((point) => `<li>${point}</li>`)
-      .join('');
+  nonStevensRoles.forEach((job) => {
+    orderedItems.push({ type: 'role', job });
+  });
 
-    item.innerHTML = `
-      <h3 class="experience-role">${job.role}</h3>
-      <div class="experience-org-row">
-        <p class="experience-org">${job.organization}</p>
-        <p class="experience-location">${job.location}</p>
-      </div>
-      <div class="experience-meta-row">
-        <p class="experience-dates">${job.dates}</p>
-      </div>
-      <p class="experience-brief">${job.brief}</p>
-      <button class="experience-toggle" type="button" aria-expanded="false">View impact</button>
-      <div class="experience-expanded" hidden>
-        <div class="experience-tech">${techHTML}</div>
-        <ul class="experience-points">${pointsHTML}</ul>
-      </div>
-    `;
+  orderedItems.forEach((entry, index) => {
+    const item = entry.type === 'stevens-group'
+      ? createStevensGroupItem(entry.roles, index)
+      : createExperienceItem(entry.job, index);
 
     const toggleButton = item.querySelector('.experience-toggle');
     const expandedContent = item.querySelector('.experience-expanded');
     if (toggleButton && expandedContent) {
+      const closedLabel = toggleButton.textContent;
       toggleButton.addEventListener('click', () => {
         const isOpen = item.classList.toggle('is-open');
         expandedContent.hidden = !isOpen;
         toggleButton.setAttribute('aria-expanded', String(isOpen));
-        toggleButton.textContent = isOpen ? 'Hide details' : 'View impact';
+        toggleButton.textContent = isOpen ? 'Hide details' : closedLabel;
+      });
+    }
+
+    if (entry.type === 'stevens-group') {
+      item.querySelectorAll('.stevens-role-toggle').forEach((roleToggle) => {
+        const roleItem = roleToggle.closest('.stevens-role-item');
+        const roleDetail = roleItem ? roleItem.querySelector('.stevens-role-detail') : null;
+        if (!roleDetail || !roleItem) {
+          return;
+        }
+
+        roleToggle.addEventListener('click', () => {
+          const isOpen = roleItem.classList.toggle('is-open');
+          roleDetail.hidden = !isOpen;
+          roleToggle.setAttribute('aria-expanded', String(isOpen));
+          roleToggle.textContent = isOpen ? 'Hide role details' : 'View role details';
+        });
+
+        if (roleDetail.hidden) {
+          roleItem.classList.remove('is-open');
+        } else {
+          roleItem.classList.add('is-open');
+        }
       });
     }
 
@@ -305,6 +413,20 @@ function initScrollAnimation() {
   });
 }
 
+function initNavScrollState() {
+  const navBar = document.querySelector('.nav-bar');
+  if (!navBar) {
+    return;
+  }
+
+  const updateNavState = () => {
+    navBar.classList.toggle('is-scrolled', window.scrollY > 24);
+  };
+
+  updateNavState();
+  window.addEventListener('scroll', updateNavState, { passive: true });
+}
+
 // === INITIALIZATION ===
 document.addEventListener('DOMContentLoaded', () => {
   initHeroName();
@@ -314,4 +436,5 @@ document.addEventListener('DOMContentLoaded', () => {
   markRevealTargets();
   initSmoothScroll();
   initScrollAnimation();
+  initNavScrollState();
 });

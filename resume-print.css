@@ -1,0 +1,159 @@
+@page {
+  size: A4;
+  margin: 0.5in;
+}
+
+:root {
+  --text: #111827;
+  --muted: #4b5563;
+  --rule: #e5e7eb;
+  --heading: #1f2937;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  color: var(--text);
+  line-height: 1.35;
+  background: #ffffff;
+}
+
+.resume {
+  max-width: 8.5in;
+  margin: 0 auto;
+  padding: 0.1in;
+}
+
+.header {
+  border-bottom: 2px solid var(--heading);
+  padding-bottom: 10px;
+  margin-bottom: 12px;
+}
+
+.name {
+  margin: 0;
+  font-size: 28px;
+  line-height: 1.05;
+  color: #000000;
+  letter-spacing: 0.2px;
+}
+
+.contact {
+  margin-top: 8px;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.contact a {
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.section {
+  margin-top: 12px;
+}
+
+.section-title {
+  margin: 0 0 6px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #000000;
+  text-transform: uppercase;
+  letter-spacing: 0.7px;
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: 4px;
+}
+
+p {
+  margin: 6px 0;
+  font-size: 12.5px;
+}
+
+.meta-line {
+  margin: 2px 0 0;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.entry {
+  margin-top: 10px;
+  page-break-inside: avoid;
+}
+
+.entry-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  align-items: baseline;
+}
+
+.role,
+.school,
+.project {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 700;
+  color: #000000;
+}
+
+.dates {
+  font-size: 12px;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.org {
+  margin: 2px 0 4px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+ul {
+  margin: 5px 0 0 17px;
+  padding: 0;
+}
+
+li {
+  margin: 3px 0;
+  font-size: 12.5px;
+}
+
+.skills-line {
+  font-size: 12.5px;
+  margin: 4px 0;
+}
+
+.skills-line strong {
+  color: #000000;
+}
+
+.small {
+  font-size: 12px;
+}
+
+@media screen {
+  body {
+    background: #f8fafc;
+  }
+
+  .resume {
+    background: #ffffff;
+    padding: 22px;
+    margin: 20px auto;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+  }
+}
+
+@media print {
+  .resume {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    box-shadow: none;
+  }
+}

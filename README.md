@@ -1,56 +1,70 @@
 # Thejas Portfolio
 
-A responsive, static portfolio site with a classy/funky urban visual style, animated narrative text, and a unique randomized opening each time the page loads.
+Personal portfolio website built with HTML, CSS, and vanilla JavaScript.
 
-## Stack
+Live site: https://thejasvk.github.io/Homerun/
 
-- HTML
-- CSS
+## Features
+
+- Hero section with one-time typed name animation and blinking cursor.
+- Scroll-reveal animations for sections and cards.
+- Terminal-style About block.
+- Story-driven About paragraph plus Skills and Certifications cards.
+- Expand/collapse Work Experience timeline (chronological ladder).
+- Education cards.
+- Dynamic project cards rendered from JavaScript data.
+- Responsive design for mobile, tablet, and desktop.
+
+## Tech Stack
+
+- HTML5
+- CSS3
 - Vanilla JavaScript
+
+## Project Structure
+
+- `index.html`: Page structure and content sections.
+- `styles.css`: Theme, layout, responsive styles, animations.
+- `script.js`: Typed name effect, terminal output, timeline/projects render logic, scroll interactions.
+- `assets/images/`: Local image placeholder folder.
 
 ## Run Locally
 
-Open `index.html` in your browser.
+Option 1:
 
-## Customize Content Quickly
+- Open `index.html` directly in your browser.
 
-- Main content and links: `index.html`
-- Theme and layout: `styles.css`
-- Rotating intro text, narrative typing, random variants/images: `script.js`
+Option 2 (recommended):
 
-## Add Your Own Images
+```bash
+python3 -m http.server 8100
+```
 
-Replace image URLs in:
+Then visit: `http://localhost:8100`
 
-- Hero image pool: `script.js` (`heroImages` array)
-- Gallery images: `index.html` (`.gallery-grid` section)
+## Deploy with GitHub Pages
 
-## GitHub Pages (Free Hosting)
+1. Push code to the `main` branch.
+2. Go to repository `Settings` > `Pages`.
+3. Under `Build and deployment`:
+   - Source: `Deploy from a branch`
+   - Branch: `main`
+   - Folder: `/ (root)`
+4. Save changes.
+5. GitHub will publish automatically after each push.
 
-1. Push this folder to a GitHub repository.
-2. Open repository **Settings** > **Pages**.
-3. Under **Build and deployment**:
-   - Source: **Deploy from a branch**
-   - Branch: `main` (or `master`) and `/ (root)`
-4. Save and wait 1-2 minutes.
-5. Your site will be live at: `https://<your-username>.github.io/<repo-name>/`
+## Update Workflow
 
-## Resume Link (No Cost)
+Any new commit pushed to `main` will automatically update the live site after deployment completes.
 
-Pick one of these free options:
+```bash
+git add .
+git commit -m "Your update message"
+git push origin main
+```
 
-1. Google Drive
-   - Upload your PDF resume to Drive.
-   - Set sharing to "Anyone with the link" (Viewer).
-   - Use that public link in `index.html` for the resume button.
-2. GitHub Repository
-   - Add resume PDF in your repo (for example `assets/Thejas_Resume.pdf`).
-   - Link it directly from `index.html`.
-3. LinkedIn Featured Section
-   - Upload resume/media in LinkedIn Featured and use that URL.
+## Contact
 
-## Notes
-
-- External images are pulled from Unsplash URLs.
-- A local image placeholder folder is ready at `assets/images/`.
-- To avoid dependency on external image hosts, use local files under `assets/`.
+- Email: vkthejas01@gmail.com
+- LinkedIn: https://linkedin.com/in/thejasvk
+- GitHub: https://github.com/ThejasVK

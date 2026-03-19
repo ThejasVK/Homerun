@@ -26,7 +26,6 @@ Live site: https://thejasvk.github.io/Homerun/
 - `index.html`: Page structure and content sections.
 - `styles.css`: Theme, layout, responsive styles, animations.
 - `script.js`: Typed name effect, terminal output, timeline/projects render logic, scroll interactions.
-- `assets/images/`: Local image placeholder folder.
 
 ## Run Locally
 

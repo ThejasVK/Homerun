@@ -157,7 +157,6 @@ function renderTerminal() {
     setTimeout(() => {
       const lineEl = document.createElement('div');
       lineEl.className = 'terminal-line';
-      lineEl.style.animationDelay = '0s';
       
       const input = document.createElement('div');
       input.className = 'terminal-input';
@@ -183,7 +182,6 @@ function renderProjects() {
   projects.forEach((project, index) => {
     const card = document.createElement('div');
     card.className = 'project-card reveal reveal-pop';
-    card.style.animationDelay = `${index * 0.1}s`;
     card.style.setProperty('--reveal-delay', `${index * 90}ms`);
     
     const skillsHTML = project.skills
@@ -216,7 +214,6 @@ function renderExperience() {
   experiences.forEach((job, index) => {
     const item = document.createElement('article');
     item.className = `experience-item reveal ${index % 2 === 0 ? 'reveal-left' : 'reveal-right'}`;
-    item.style.animationDelay = `${index * 0.08}s`;
     item.style.setProperty('--reveal-delay', `${index * 70}ms`);
 
     const techHTML = job.tech

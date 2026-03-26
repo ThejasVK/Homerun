@@ -148,6 +148,44 @@ function initHeroName() {
   }, 95);
 }
 
+function initFlipInterests() {
+  const interestText = document.getElementById('flip-interest-text');
+  if (!interestText) {
+    return;
+  }
+
+  const labels = [
+    'AI Systems',
+    'Data Engineering',
+    'Machine Learning',
+    'Product Analytics'
+  ];
+
+  let currentIndex = 0;
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  const rotateText = () => {
+    currentIndex = (currentIndex + 1) % labels.length;
+
+    if (prefersReducedMotion) {
+      interestText.textContent = labels[currentIndex];
+      return;
+    }
+
+    interestText.classList.add('is-flipping');
+
+    setTimeout(() => {
+      interestText.textContent = labels[currentIndex];
+    }, 275);
+
+    setTimeout(() => {
+      interestText.classList.remove('is-flipping');
+    }, 560);
+  };
+
+  setInterval(rotateText, 2200);
+}
+
 // === TERMINAL OUTPUT ===
 function renderTerminal() {
   const terminal = document.getElementById('terminal-output');
@@ -427,9 +465,65 @@ function initNavScrollState() {
   window.addEventListener('scroll', updateNavState, { passive: true });
 }
 
+function initVisitorCounter() {
+  const countEl = document.getElementById('visitor-count');
+  if (!countEl) {
+    return;
+  }
+
+  // Free counter service that works on static hosting like GitHub Pages.
+  const endpoint = 'https://api.countapi.xyz/hit/thejasvk-homerun/visits';
+
+  fetch(endpoint)
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error('Counter request failed');
+      }
+      return response.json();
+    })
+    .then((data) => {
+      const value = typeof data.value === 'number' ? data.value : null;
+      countEl.textContent = value !== null ? value.toLocaleString() : '--';
+    })
+    .catch(() => {
+      countEl.textContent = '--';
+    });
+}
+
+function initQuickContact() {
+  const container = document.querySelector('.quick-contact');
+  const toggle = document.getElementById('quick-contact-toggle');
+  const links = document.getElementById('quick-contact-links');
+
+  if (!container || !toggle || !links) {
+    return;
+  }
+
+  const setOpen = (isOpen) => {
+    container.classList.toggle('is-open', isOpen);
+    toggle.setAttribute('aria-expanded', String(isOpen));
+    links.hidden = !isOpen;
+  };
+
+  setOpen(false);
+
+  toggle.addEventListener('click', (event) => {
+    event.stopPropagation();
+    const nextOpen = toggle.getAttribute('aria-expanded') !== 'true';
+    setOpen(nextOpen);
+  });
+
+  document.addEventListener('click', (event) => {
+    if (!container.contains(event.target)) {
+      setOpen(false);
+    }
+  });
+}
+
 // === INITIALIZATION ===
 document.addEventListener('DOMContentLoaded', () => {
   initHeroName();
+  initFlipInterests();
   renderTerminal();
   renderExperience();
   renderProjects();
@@ -437,4 +531,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initSmoothScroll();
   initScrollAnimation();
   initNavScrollState();
+  initVisitorCounter();
+  initQuickContact();
 });

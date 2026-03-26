@@ -5,9 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Thejas - Data Engineer & AI Builder" />
     <title>Thejas | Data Engineer & AI Builder</title>
+    <link rel="icon" type="image/svg+xml" href="assets/tj-logo.svg" />
+    <link rel="shortcut icon" href="assets/tj-logo.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Poppins:wght@200;300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Poppins:wght@200;300;400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
@@ -16,6 +18,11 @@
     <div class="wrapper">
       <!-- Navigation -->
       <nav class="nav-bar">
+        <a href="#home" class="nav-brand scroll-link" aria-label="Go to home">
+          <span class="nav-brand-mark" aria-hidden="true">
+            <img src="assets/tj-logo.svg" alt="TJ logo" class="nav-brand-logo" />
+          </span>
+        </a>
         <div class="nav-links">
           <a href="#home" class="nav-link scroll-link">Home</a>
           <a href="#about" class="nav-link scroll-link">About</a>
@@ -32,12 +39,10 @@
           <h1 class="hero-title">
             <span id="typed-text" class="typed-text"></span><span id="name-cursor" class="name-cursor" aria-hidden="true">|</span>
           </h1>
-          <p class="hero-subtitle">3+ Years Experience • MS Information Systems @ Stevens • Data & AI Product Builder</p>
           <div class="hero-interests" aria-label="Interests">
-            <span class="interest-pill">AI Systems</span>
-            <span class="interest-pill">Data Engineering</span>
-            <span class="interest-pill">Machine Learning</span>
-            <span class="interest-pill">Product Analytics</span>
+            <span class="flip-interest" aria-live="polite">
+              <span id="flip-interest-text" class="flip-interest-text">AI Systems</span>
+            </span>
           </div>
           <p class="hero-description">
             I bring 3+ years of hands-on experience across network engineering, automation, and analytics, including enterprise-scale delivery at NTT DATA.
@@ -45,6 +50,7 @@
           <p class="hero-description">
             I bridge data and business by turning complex insights into simple, high-impact products and user experiences.
           </p>
+          <p class="hero-ms-note">MS in Information Systems @ Stevens Institute of Technology</p>
           <div class="hero-cta">
             <a href="#projects" class="btn btn-primary scroll-link">View My Work</a>
             <a href="#contact" class="btn btn-secondary scroll-link">Get in Touch</a>
@@ -166,8 +172,20 @@
       <!-- Footer -->
       <footer class="footer">
         <p>Designed & built by Thejas • 2026</p>
+        <p class="visitor-counter" aria-live="polite">site visits <span id="visitor-count">...</span></p>
       </footer>
     </div>
+
+    <aside class="quick-contact" aria-label="Quick contact links">
+      <button id="quick-contact-toggle" class="quick-contact-toggle" type="button" aria-expanded="false" aria-controls="quick-contact-links">
+        Get in touch
+      </button>
+      <div id="quick-contact-links" class="quick-contact-links" hidden>
+        <a href="https://linkedin.com/in/thejasvk" target="_blank" rel="noopener" class="quick-contact-link">LinkedIn</a>
+        <a href="https://github.com/ThejasVK" target="_blank" rel="noopener" class="quick-contact-link">GitHub</a>
+        <a href="https://www.instagram.com/_thejas_vk/" target="_blank" rel="noopener" class="quick-contact-link">Instagram</a>
+      </div>
+    </aside>
 
     <script src="script.js"></script>
   </body>

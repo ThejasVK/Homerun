@@ -58,9 +58,9 @@ const projects = [
     live: 'https://github.com/ThejasVK/GH-ProForma',
   },
   {
-    title: 'Sales & Profitability Analysis',
-    description: 'Deep-dive analysis uncovering profitability drivers across retail datasets.',
-    skills: ['Python', 'Pandas', 'Matplotlib', 'SQL'],
+    title: 'Walmart Sales & Profitability',
+    description: 'Sales forecasting with Random Forest and Linear Regression: 92% accuracy, and the drivers it surfaced point to $1.5M in potential savings.',
+    skills: ['Python', 'Scikit-learn', 'Pandas', 'SQL'],
     github: 'https://github.com/ThejasVK',
     live: 'https://github.com/ThejasVK',
   },
@@ -500,31 +500,6 @@ function initNavScrollState() {
   window.addEventListener('scroll', updateNavState, { passive: true });
 }
 
-function initVisitorCounter() {
-  const countEl = document.getElementById('visitor-count');
-  if (!countEl) {
-    return;
-  }
-
-  // Free counter service that works on static hosting like GitHub Pages.
-  const endpoint = 'https://api.countapi.xyz/hit/thejasvk-homerun/visits';
-
-  fetch(endpoint)
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error('Counter request failed');
-      }
-      return response.json();
-    })
-    .then((data) => {
-      const value = typeof data.value === 'number' ? data.value : null;
-      countEl.textContent = value !== null ? value.toLocaleString() : '--';
-    })
-    .catch(() => {
-      countEl.textContent = '--';
-    });
-}
-
 function initQuickContact() {
   const container = document.querySelector('.quick-contact');
   const toggle = document.getElementById('quick-contact-toggle');
@@ -566,6 +541,5 @@ document.addEventListener('DOMContentLoaded', () => {
   initSmoothScroll();
   initScrollAnimation();
   initNavScrollState();
-  initVisitorCounter();
   initQuickContact();
 });

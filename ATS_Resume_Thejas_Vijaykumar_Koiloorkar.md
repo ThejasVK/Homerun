@@ -71,7 +71,7 @@ Aug 2021 - Oct 2021
 ### Stevens Institute of Technology, School of Business
 Master of Science in Information Systems, Concentration in Business Intelligence and Analytics
 Hoboken, NJ
-Expected May 2026
+May 2026
 GPA: 3.9/4.0
 
 ### Visvesvaraya Technological University

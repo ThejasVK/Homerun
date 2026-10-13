@@ -59,12 +59,16 @@ nav a:hover { color: var(--ink); }
 
 /* hero */
 .hero { padding-top: 88px; padding-bottom: 72px; }
-.intro { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 48px; align-items: center; }
-.portrait { display: block; width: 232px; height: 232px; border-radius: 50%; padding: 5px; background: var(--paper); box-shadow: 0 0 0 1px var(--line); }
-.portrait img { display: block; width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
+.intro { display: grid; grid-template-columns: minmax(0, 1fr) minmax(240px, 300px); gap: 56px; align-items: center; }
+.portrait { display: block; margin: 0; aspect-ratio: 4 / 5; border-radius: 28px 28px 0 0; overflow: hidden;
+  -webkit-mask-image: linear-gradient(to bottom, #000 62%, rgba(0,0,0,.55) 82%, transparent 100%);
+          mask-image: linear-gradient(to bottom, #000 62%, rgba(0,0,0,.55) 82%, transparent 100%); }
+.portrait img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; }
+@media (prefers-color-scheme: dark) { .portrait img { filter: brightness(.9) saturate(.95); } }
 @media (max-width: 760px) {
-  .intro { grid-template-columns: 1fr; gap: 24px; }
-  .portrait { order: -1; width: 112px; height: 112px; padding: 4px; }
+  .intro { grid-template-columns: 1fr; gap: 20px; }
+  .portrait { order: -1; aspect-ratio: 3 / 2; max-width: 440px; border-radius: 22px 22px 0 0; }
+  .portrait img { object-position: 50% 26%; }
 }
 .status { display: inline-flex; align-items: center; gap: 10px; margin: 0 0 28px; font-size: 15px; color: var(--muted); }
 .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--live); box-shadow: 0 0 0 4px color-mix(in srgb, var(--live) 20%, transparent); }
@@ -161,6 +165,7 @@ h3 a:hover { color: var(--accent); text-decoration-color: var(--accent); }
 .contact p { margin: 0; max-width: 60ch; }
 .contact .big { margin-top: 20px; font-size: clamp(24px, 4vw, 40px); font-weight: 800; letter-spacing: -0.02em; word-break: break-word; }
 .contact .big a { color: var(--ink); text-decoration-color: var(--accent); text-decoration-thickness: 3px; text-underline-offset: 6px; }
+.contact .aside { margin-top: 8px; color: var(--muted); }
 .contact .links { display: flex; gap: 22px; margin-top: 18px; font-weight: 600; }
 
 .foot { padding: 32px 24px 48px; color: var(--muted); font-size: 14px; border-top: 1px solid var(--line); }

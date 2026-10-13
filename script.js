@@ -9,6 +9,20 @@ const aboutData = [
 
 const projects = [
   {
+    title: 'guestgraph',
+    description: 'Identity resolution for restaurant transactions: links anonymous card visits to guests with a union-find graph, builds SQL audiences, uploads hashed audiences to Meta and Google, and measures lift with a holdout.',
+    skills: ['Python', 'SQL', 'DuckDB', 'AWS Lambda', 'CI'],
+    github: 'https://github.com/ThejasVK/guestgraph',
+    live: 'https://github.com/ThejasVK/guestgraph',
+  },
+  {
+    title: 'AgentGuard',
+    description: 'Log-triage AI agent built to survive untrusted input: prompt-injection and exfiltration guardrails, PAN masking, tamper-evident audit log, and red-team evals that fail CI.',
+    skills: ['Python', 'LLM Agents', 'Bedrock', 'Security'],
+    github: 'https://github.com/ThejasVK/AgentGuard',
+    live: 'https://github.com/ThejasVK/AgentGuard',
+  },
+  {
     title: 'AI Resume & Interview Reviewer',
     description: 'Hackathon-winning platform automating resume screening with live facial-expression analysis.',
     skills: ['Python', 'LLMs', 'Computer Vision', 'FastAPI'],
@@ -16,11 +30,32 @@ const projects = [
     live: 'https://github.com/ThejasVK/AgileAnalysts',
   },
   {
-    title: 'QuantFolio',
-    description: 'Python package for portfolio risk analysis and performance metrics with OOP principles.',
+    title: 'AWS VPC with Terraform',
+    description: 'Multi-AZ VPC with public and private subnets, NAT, flow logs, an S3 endpoint and an SSM bastion, validated with tflint in CI.',
+    skills: ['Terraform', 'AWS', 'Networking', 'IaC'],
+    github: 'https://github.com/ThejasVK/aws-vpc-terraform',
+    live: 'https://github.com/ThejasVK/aws-vpc-terraform',
+  },
+  {
+    title: 'DOIT: Get Unstuck',
+    description: 'Productivity app for procrastinators: LLM task breakdowns and a manager mode that checks in on stalled tasks.',
+    skills: ['React', 'FastAPI', 'PostgreSQL', 'LLMs'],
+    github: 'https://github.com/ThejasVK/Deadline',
+    live: 'https://github.com/ThejasVK/Deadline',
+  },
+  {
+    title: 'PyPairs',
+    description: 'Team-built Python package for pairs trading: pair selection, z-score signals, backtesting, Sharpe ratio and drawdown, and threshold optimization.',
     skills: ['Python', 'Pandas', 'NumPy', 'yFinance'],
     github: 'https://github.com/ThejasVK/PyPairs',
     live: 'https://github.com/ThejasVK/PyPairs',
+  },
+  {
+    title: 'Financial Statement Analyzer',
+    description: 'Streamlit app that cleans messy P&L workbooks, forecasts next month with regression and flags financial risks.',
+    skills: ['Python', 'Streamlit', 'Pandas', 'Scikit-learn'],
+    github: 'https://github.com/ThejasVK/GH-ProForma',
+    live: 'https://github.com/ThejasVK/GH-ProForma',
   },
   {
     title: 'Sales & Profitability Analysis',
